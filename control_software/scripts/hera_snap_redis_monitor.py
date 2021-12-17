@@ -66,7 +66,7 @@ if __name__ == "__main__":
             upload_time = corr.r.hget('snap_configuration', 'upload_time')
             logger.info('New configuration detected. Reinitializing fengine list')
             corr = hcf_snap_reporter.SnapReporter(redishost=args.redishost,
-                                                  redis_transport=(not args.noredistapcp),
+                                                  use_redis=(not args.noredistapcp),
                                                   block_monitoring=False,
                                                   logger=logger)
             corr.print_ant_log_messages()
