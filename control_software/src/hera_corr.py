@@ -287,9 +287,9 @@ class HeraCorrelator(object):
         # record actual sample frequency to redis
         h = hosts[0]
         clk_MHz = self.fengs[h].adc.lmx.getFreq()
-        self.r['feng:sample_freq'] = clk_MHz * 1e6 # in Hz
+        self.r['feng:sample_freq'] = clk_MHz * 1e6  # in Hz
         self.r['feng:samples_per_mcnt'] = self.config['samples_per_mcnt']
-        self.r['feng:sync_time'] = -1 # not sync'd yet
+        self.r['feng:sync_time'] = -1  # not sync'd yet
         return failed
 
     def get_feng_hostnames(self, hosts=None, programmed=True,
@@ -386,7 +386,7 @@ class HeraCorrelator(object):
             major (int): Major version to match. Default MAJOR_VERSION
         """
         feng = self.fengs[host]
-        _maj,_min = feng.version()
+        _maj, _min = feng.version()
         if major is not None:
             assert(_maj in major)
 
@@ -456,7 +456,7 @@ class HeraCorrelator(object):
             # if controlling phase switch for all fengs, record to
             # master redis flag
             self.r.hmset('corr:status:phase_switch',
-                         {'state':'off', 'time':time.time()})
+                         {'state': 'off', 'time': time.time()})
         hosts = self.get_feng_hostnames(hosts=hosts)
         failed = self._call_on_hosts(
                             target=self.phase_switch_disable,
