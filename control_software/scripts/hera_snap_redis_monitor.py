@@ -37,7 +37,7 @@ if __name__ == "__main__":
             handler.setLevel(getattr(logging, args.loglevel))
 
     corr = hcf_snap_reporter.SnapReporter(redishost=args.redishost,
-                                          redis_transport=(not args.noredistapcp),
+                                          use_redis=(not args.noredistapcp),
                                           block_monitoring=False,
                                           logger=logger)
     upload_time = corr.r.hget('snap_configuration', 'upload_time')
