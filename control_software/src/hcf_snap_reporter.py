@@ -46,11 +46,9 @@ def validate_redis_dict(in_dict, recursion_depth=1):
 
 class SnapReporter(HeraCorrelator):
     def __init__(self, redishost='redishost',
-                 use_redis=True,
                  block_monitoring=False,
                  logger=None):
         super(SnapReporter, self).__init__(redishost=redishost,
-                                           use_redis=use_redis,
                                            block_monitoring=block_monitoring)
         if logger is None:
             self.logger = Lager()
