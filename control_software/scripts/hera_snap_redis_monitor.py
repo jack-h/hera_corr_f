@@ -20,7 +20,8 @@ if __name__ == "__main__":
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('-r', dest='redishost', type=str, default='redishost',
                         help='Host servicing redis requests')
-    parser.add_argument('--noredistapcp', help="", action='store_true')
+    parser.add_argument('--noredistapcp', action='store_true',
+                        help="Flag to not use the redis-based SNAP comms protocol")
     parser.add_argument('-d', dest='delay', type=float, default=10.0,
                         help='Seconds between polling loops')
     parser.add_argument('-D', dest='retrytime', type=float, default=300.0,
@@ -36,6 +37,7 @@ if __name__ == "__main__":
             handler.setLevel(getattr(logging, args.loglevel))
 
     corr = hcf_snap_reporter.SnapReporter(redishost=args.redishost,
+                                          use_redis=(not args.noredistapcp),
                                           block_monitoring=False,
                                           logger=logger)
     upload_time = corr.r.hget('snap_configuration', 'upload_time')
