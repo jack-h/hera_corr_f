@@ -20,6 +20,7 @@ if __name__ == "__main__":
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('-r', dest='redishost', type=str, default='redishost',
                         help='Host servicing redis requests')
+    parser.add_argument('--noredistapcp', help="", action='store_true')
     parser.add_argument('-d', dest='delay', type=float, default=10.0,
                         help='Seconds between polling loops')
     parser.add_argument('-D', dest='retrytime', type=float, default=300.0,
